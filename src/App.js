@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import Buscador from './Buscador';
+import List from './imageList';
 
 
 function App() {
 
   const [mainData, setData] = useState('');
+  const [images, setImages] = useState([]);
 
   useEffect (() =>{
 
@@ -17,9 +19,14 @@ function App() {
 
       const url = `https://pixabay.com/api/?key=${key}&q=${mainData}&per_page=${imagesPerPage}`;
 
+
+      // usando fecth para hacer el request, luego extraemos la respuesta con .json
       const respuesta = await fetch(url);
-      const resultado = await respuesta.json()
-      console.log(resultado);
+      const resultado = await respuesta.json();
+      
+      // Guardamos en estado las imagenes procesadas
+      setImages(resultado.hits);
+
 
     }
     consultarApi();
@@ -36,6 +43,9 @@ function App() {
       </div>
       
       <div className = "row justify-content-center">
+        <List
+        images={images}
+        />
       
       </div>
 
