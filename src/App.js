@@ -38,6 +38,10 @@ function App() {
       // Guardamos en el estado totalPages, el resultado del calculo redondeando hacia arriba con el metodo.ceil. 
       // Queda guardado en el estado el numero de paginas en base a las imagenes generadas.
       setTotalPages(Math.ceil(resultado.totalHits / imagesPerPage));
+
+      // scrooll effect
+      const jumbotron = document.querySelector('.jumbotron');
+      jumbotron.scrollIntoView({behavior: 'smooth', block:'end'});
       
 
 
